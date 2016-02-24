@@ -16,7 +16,7 @@ export class AppComponent {
   }
 
   showConfirmDialog() {
-    this.confirmAndroid();
+    this.confirmIphone();
   }
 
   confirmAndroid() {
@@ -44,5 +44,21 @@ export class AppComponent {
 
     builder.create();
     builder.show();
+  }
+
+  confirmIphone() {
+    //API GUIDE: https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIAlertController_class/
+
+    let alertController = UIAlertController
+      .alertControllerWithTitleMessagePreferredStyle('Survey', 'Am I boring you?', UIAlertControllerStyle.UIAlertControllerStyleAlert);
+
+    alertController.addAction(UIAlertAction.actionWithTitleStyleHandler('Yes', UIAlertActionStyle.UIAlertActionStyleDefault, (arg) => {
+      this.ngZone.run(() => this.label = 'Yes Clicked!');
+    }));
+    alertController.addAction(UIAlertAction.actionWithTitleStyleHandler('Hell Yes', UIAlertActionStyle.UIAlertActionStyleDefault, (arg) => {
+      this.ngZone.run(() => this.label = 'Hell Yes Clicked!');
+    }));
+    var viewController = app.ios.rootController;
+    viewController.presentModalViewControllerAnimated(alertController, true);
   }
 }
