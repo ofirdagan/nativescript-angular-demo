@@ -16,11 +16,21 @@ export class AppComponent {
   }
 
   showConfirmDialog() {
-    if (app.android) {
-      this.confirmAndroid();
-    } else if (app.ios) {
-      this.confirmIphone();
-    }
+    this.confirm();
+  }
+
+  confirm() {
+    var options = {
+      title: 'Survey',
+      message: 'Am I boring you?',
+      okButtonText: "Yes",
+      cancelButtonText: "Hell Yes"
+    };
+    dialogs.confirm(options).then(result => {
+      this.label = result ? 'Yes Clicked!' : 'Hell Yes Clicked!';
+    }).catch(e => {
+      console.log(e);
+    });
   }
 
   confirmAndroid() {
