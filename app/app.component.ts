@@ -16,7 +16,11 @@ export class AppComponent {
   }
 
   showConfirmDialog() {
-    this.confirmIphone();
+    if (app.android) {
+      this.confirmAndroid();
+    } else if (app.ios) {
+      this.confirmIphone();
+    }
   }
 
   confirmAndroid() {
