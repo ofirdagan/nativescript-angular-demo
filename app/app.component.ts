@@ -27,14 +27,18 @@ export class AppComponent {
       .setMessage('Am I boring you?')
       .setPositiveButton('Yes', new android.content.DialogInterface.OnClickListener({
         onClick: (dialog, id: number) => {
-          dialog.cancel();
-          this.label = 'Yes Clicked!';
+          this.ngZone.run(() => {
+            dialog.cancel();
+            this.label = 'Yes Clicked!';
+          });
         }
       }))
       .setNegativeButton('Hell Yes', new android.content.DialogInterface.OnClickListener({
         onClick: (dialog, id: number) => {
-          dialog.cancel();
-          this.label = 'Hell Yes Clicked';
+          this.ngZone.run(() => {
+            dialog.cancel();
+            this.label = 'Hell Yes Clicked';
+          });
         }
       }));
 
