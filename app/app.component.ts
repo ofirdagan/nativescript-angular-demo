@@ -64,7 +64,6 @@ export class AppComponent {
         }
       }));
 
-    builder.create();
     builder.show();
   }
 
